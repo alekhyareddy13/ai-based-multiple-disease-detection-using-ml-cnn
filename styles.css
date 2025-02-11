@@ -1,0 +1,83 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #b3e0ff, #ffb3e6, #d9b3ff);
+    color: #000;
+    text-align: center;
+}
+
+header {
+    background: #b2b6f7;
+    padding: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+}
+
+header h1 {
+    margin: 0;
+    font-size: 28px;
+    color: black;
+}
+
+.taskbar {
+    background: #b2b6f7;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    border-radius: 5px;
+    flex-wrap: wrap;
+}
+
+.taskbar a {
+    background: #9869ef;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.taskbar a:hover {
+    background: #4d02cf;
+    text-decoration: none;
+}
+
+main {
+    p {
+        word-spacing: 4px;
+      }
+    padding: 20px;
+}
+
+section {
+    p {
+        word-spacing: 4px;
+      }
+    margin: 30px auto;
+    max-width: 900px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 30px;
+    border-radius: 10px;
+    text-align: left;
+    color: #000;
+}
+
+.algorithm img {
+    p {
+        word-spacing: 4px;
+      }
+    width: 50%;
+    border-radius: 10px;
+    text-align: center;
+    align-content: center;
+}
+
+footer {
+    margin-top: 20px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.7);
+}

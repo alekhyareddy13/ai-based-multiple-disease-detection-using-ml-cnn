@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breast Cancer Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background: linear-gradient(to right, #42a4e4, #ff7dd4, #8a4bf8);
+        }
+        header {
+            background: rgba(75, 0, 130, 0.7);
+            color: white;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            backdrop-filter: blur(5px);
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+        nav a:hover {
+            color: #d3cce3;
+            transform: scale(1.1);
+        }
+        .hero {
+            padding: 40px 20px;
+            color: white;
+            margin-top: 30px;
+        }
+        .hero h1 {
+            font-size: 2.0em;
+            color: white;
+        }
+        .hero p {
+            font-size: 0.9em;
+            max-width: 1000px;
+            margin: 10px auto;
+            color: white;
+        }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            gap: 70px;
+            margin-top: 20px;
+        }
+        .image-container img {
+            width: 300px;
+            height: 200px;
+            border-radius: 10px;
+        }
+        .btn {
+            background: linear-gradient(to right, #007bff, #8a4bf8);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 50px;
+            border-radius: 5px;
+            transition: background 0.3s ease, transform 0.2s ease;
+            border: none;
+        }
+        .btn:hover {
+            background: linear-gradient(to right, #0056b3, #004494);
+            transform: scale(1.05);
+        }
+        
+        .features {
+            padding: 20px 20px;
+            background: linear-gradient(to right, #42a4e4, #ff7dd4, #8a4bf8);
+        }
+        .form-section {
+            padding: 30px 20px;
+            background: linear-gradient(to right, #42a4e4, #ff7dd4, #8a4bf8);
+        }
+        .form-section input {
+            display: block;
+            width: 50%;
+            margin: 10px auto;
+            padding: 10px;
+        }
+        .form-section .btn {
+            background: linear-gradient(to right, #007bff, #8a4bf8);
+            border: none;
+        }
+        .form-section .btn:hover {
+            background: linear-gradient(to right, #0056b3, #004494);
+            transform: scale(1.05);
+        }
+        footer {
+            background: linear-gradient(to right, #4b0082, #2e0057);
+            color: white;
+            padding: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#test">Test</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+    
+    <section class="hero" id="home">
+        <h1>Early Detection for Better Health</h1>
+        <p>Breast cancer is one of the most common cancers among women.
+            Breast cancer is a disease where abnormal cells within the breast tissue begin to grow and multiply uncontrollably, forming tumors that can spread to other parts of the body if left untreated; it most commonly originates in the milk ducts or lobules of the breast, and while primarily affecting women, men can also develop it, although rarely; symptoms may include a breast lump, skin changes like dimpling or puckering, nipple discharge, or changes in breast size or shape, and early detection through screening is crucial for successful treatment.  
+            Early detection through AI-based screening can significantly improve treatment success rates and survival.</p>
+        <div class="image-container">
+            <img src="https://images.squarespace-cdn.com/content/v1/60c0c4ccb585b43df27d5f44/1627937146146-8O5LJTD8Y2VQE1JQU01I/types+of+breast+cancer.jpeg" alt="Image">
+            <img src="https://images.everydayhealth.com/images/seo-graphic-content-initiative/eh-symptoms-of-early-breast-cancer-seo-graphicddfbff18-eb70-43a6-80e6-8ea838900032.png?sfvrsn=4e6d2ca0_5" alt="Image">
+        </div>
+        <a href="#test" class="btn">Start Test</a>
+    </section>
+    
+    <section class="features">
+        <h2>About our Model</h2>
+        <p>Our breast cancer detection model uses AI to analyze key health parameters and provides an accurate risk assessment, helping you take proactive steps toward early treatment.</p>
+    </section>
+    
+    <section class="form-section" id="test">
+        <h2>Breast Cancer Risk Test</h2>
+        <form>
+            <input type="number" placeholder="Age" required>
+            <input type="text" placeholder="Family History (Yes/No)" required>
+            <input type="number" placeholder="BMI (Body Mass Index)" required>
+            <input type="text" placeholder="Lump Presence (Yes/No)" required>
+            <input type="text" placeholder="Skin Changes (Yes/No)" required>
+            <input type="text" placeholder="Pain or Discomfort (Yes/No)" required>
+            <button class="btn" type="submit">Check Breast Cancer Risk</button>
+        </form>
+    </section>
+    
+</body>
+</html>

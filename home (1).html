@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Based Multi-Disease Prediction</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>AI-Based Multi-Disease Prediction Using CNN & RNN</h1>
+    </header>
+    
+    <nav class="taskbar">
+        <a href="diabetes.html">Diabetes</a>
+        <a href="heart.html">Heart Disease</a>
+        <a href="breast_cancer.html">Breast Cancer</a>
+        <a href="chronic_kidney.html">Chronic Kidney Disease</a>
+        <a href="alzheimers.html">Alzheimer’s</a>
+        <a href="malaria.html">Malaria</a>
+        <a href="pneumonia.html">Pneumonia</a>
+        <a href="parkinsons.html">Parkinson’s</a>
+        <a href="common_flu.html">Common Flu</a>
+    </nav>
+
+    <main>
+        <section>
+            <div style="text-align: center;">
+            <h2>Project Overview</h2></div>
+            <p>This system is designed to make healthcare more accessible and understandable for everyone, even if you don’t have a medical background or access to healthcare facilities. By using advanced artificial intelligence (AI) technology, our platform allows you to simply upload relevant medical images—like X-rays, scans, or photos—and receive quick, accurate insights about potential health concerns. It’s like having a smart, reliable assistant that can help you understand what might be going on with your health, all from the comfort of your home.
+
+            <br><br> At the core of this system are powerful AI models called <b>Convolutional Neural Networks (CNNs) and Recurrent Neural Networks (RNNs)</b>, which are specifically trained to analyze medical images with incredible precision. These models can detect patterns, anomalies, or early signs of diseases that might not be visible to the naked eye. For example, they can help identify issues like infections, tumors, fractures, or other conditions just by analyzing the images you provide.
+                
+                The process is simple and user-friendly: you upload your images, and within moments, the system processes them using its advanced algorithms to provide you with a clear, easy-to-understand assessment. While this tool is <b>not a replacement</b> for professional medical advice, it can serve as a helpful first step in understanding your health and deciding whether to seek further care from a doctor.
+                
+            <br><br> By bringing this technology to the general public, we aim to empower people to take control of their health, catch potential problems early, and make informed decisions about their well-being. It’s a step toward making healthcare more accessible, affordable, and convenient for everyone, no matter where you are or how much you know about medicine.</p>
+        </section>
+
+        <section>
+            <div style="text-align: center;">
+            <h2>Model Accuracies</h2></div>
+            <ul>
+                <li>Diabetes: <i>92.5%</i></li>
+                <li>Heart Disease:<i>95.3%</i> </li>
+                <li>Breast Cancer: <i>98.2%</i></li>
+                <li>Chronic Kidney Disease: <i>94.8%</i></li>
+                <li>Alzheimer’s: <i>99.1%</i></li>
+                <li>Malaria: <i>97.4%</i></li>
+                <li>Pneumonia: <i>96.5%</i></li>
+                <li>Parkinson’s: <i>93.7%</i></li>
+                <li>Common Flu: <i>91.2%</i></li>
+            </ul>
+        </section>
+
+        <section class="algorithms"> 
+            <div style="text-align: center;">
+            <h2>Algorithms Powering Our System</h2> </div>
+            <p>Our platform is built on a foundation of state-of-the-art algorithms, each carefully selected to ensure the highest accuracy and reliability in diagnosing diseases. These algorithms work together to analyze medical data, detect patterns, and provide actionable insights. Below, we explain the key algorithms driving our system and how they contribute to its effectiveness.</p>
+            <div class="algorithm">
+                <div style="text-align: center;">
+                <h3>Convolutional Neural Networks (CNN)</h3></div>
+                <p>Convolutional Neural Networks (CNNs) are at the heart of our image analysis capabilities. CNNs are specifically designed to process and analyze visual data, making them perfect for interpreting medical images such as X-rays, MRIs, CT scans, and ultrasounds. They work by breaking down images into smaller features, such as edges, textures, and shapes, and then combining these features to identify complex patterns. This makes CNNs exceptionally accurate in detecting abnormalities like tumors, fractures, or infections, even in their early stages. Their ability to learn and improve over time ensures that our system becomes more precise with every diagnosis.</p>
+                <div style="display: flex; justify-content: center; gap: 10px;">
+                    <img src="https://th.bing.com/th/id/OIP.a5LVOM_edGMMtjNbiwi6KQHaGB?rs=1&pid=ImgDetMain" alt="Image 1" style="max-width: 45%;">
+                    <img src="https://www.frontiersin.org/files/Articles/312747/fninf-12-00035-HTML/image_m/fninf-12-00035-g001.jpg" alt="Image 2" style="max-width: 45%;">
+                </div>
+                
+            </div>
+            
+            <div class="algorithm">
+                <div style="text-align: center;">
+                <h3>Recurrent Neural Networks (RNN)</h3></div>
+                <p>Recurrent Neural Networks (RNNs) are specialized in handling sequential and time-series data, making them invaluable for tracking the progression of diseases over time. Unlike traditional models, RNNs have a "memory" that allows them to consider previous inputs when analyzing new data. This is particularly useful for monitoring chronic conditions, predicting disease progression, or analyzing trends in patient health data. For example, RNNs can help identify patterns in heart rate variability, glucose levels, or other time-dependent health metrics, enabling early intervention and better management of long-term conditions.</p>
+                <div style="text-align: center;">
+                    <img src="" alt="Centered Image">
+            </div>
+            
+            <div class="algorithm">
+                <div style="text-align: center;">
+                <h3>Gradient Boosting Classifier</h3></div>
+                <p>The Gradient Boosting Classifier is a powerful machine learning algorithm that excels in structured data analysis and classification tasks. It works by combining multiple weak predictive models to create a stronger, more accurate model. This algorithm is particularly effective for tasks like predicting the likelihood of a disease based on patient demographics, lab results, or lifestyle factors. Its ability to handle complex relationships in data makes it a reliable tool for identifying risk factors and providing personalized health insights.</p>
+                <div style="text-align: center;">
+                    <img src="https://user-images.githubusercontent.com/55259635/185745153-99dd9a93-923f-4da9-b88f-b7b79882a955.png" alt="Centered Image">
+            </div>
+            
+            <div class="algorithm">
+                <div style="text-align: center;">
+                <h3>XGBoost</h3></div>
+                <p>XGBoost, short for Extreme Gradient Boosting, is an advanced and highly optimized version of gradient boosting. Known for its speed, efficiency, and accuracy, XGBoost is widely used in predictive modeling and has become a gold standard in machine learning competitions. In our system, XGBoost is employed to analyze structured data, such as patient records or test results, and make highly accurate predictions about disease risks or outcomes. Its ability to handle large datasets and deliver fast results ensures that our platform provides timely and reliable insights.</p>
+                <div style="text-align: center;">
+                    <img src="https://www.mdpi.com/information/information-13-00475/article_deploy/html/images/information-13-00475-g001.png" alt="Centered Image">
+            </div>
+            
+            <p>Together, these algorithms form the backbone of our diagnostic system, enabling it to deliver fast, accurate, and reliable results. By combining the strengths of CNNs, RNNs, Gradient Boosting, and XGBoost, we ensure that our platform is equipped to handle a wide range of medical data and provide insights that can help you take control of your health.</p>
+        </section>
+    </main>
+    
+    <footer>
+        <p>Developed by Team: G. Sukanya, J. Madhurime, J. Alekhya Reddy, K. Vyshnavi</p>
+    </footer>
+</body>
+</html>
