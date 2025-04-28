@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alzheimer's Disease Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background: linear-gradient(to right, #42a4e4, #ff7dd4, #8a4bf8);
+        }
+        header {
+            background: rgba(75, 0, 130, 0.7); /* Dark purple with transparency */
+            color: white;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            backdrop-filter: blur(5px); /* Apply blur effect */
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+        nav a:hover {
+            color: #d3cce3;
+            transform: scale(1.1);
+        }
+        .hero {
+            padding: 40px;
+            color: white;
+            margin-top: 10px;
+        }
+        .hero h1 {
+            font-size: 2.0em;
+            color: white;
+        }
+        .hero p {
+            font-size: 1.0em;
+            max-width:1000px;
+            margin: 10px auto;
+            color: white;
+        }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            gap: 70px;
+            margin-top: 20px;
+        }
+        .image-container img {
+            width: 300px;
+            height: 200px;
+            border-radius: 10px;
+        }
+        .btn {
+            background: linear-gradient(to right, #007bff, #8a4bf8);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            border-radius: 5px;
+            transition: background 0.3s ease, transform 0.2s ease;
+            border: none;
+        }
+        .btn:hover {
+            background: linear-gradient(to right, #0056b3, #004494);
+            transform: scale(1.05);
+        }
+        .features {
+            padding: 20px 20px;
+            background: linear-gradient(to right, #42a4e4, #ff7dd4, #8a4bf8);
+        }
+        .form-section {
+            padding: 30px 20px;
+            background: linear-gradient(to right, #42a4e4, #ff7dd4, #8a4bf8);
+        }
+        .form-section input {
+            display: block;
+            width: 50%;
+            margin: 10px auto;
+            padding: 10px;
+        }
+        .form-section .btn {
+            background: linear-gradient(to right, #007bff, #8a4bf8);
+            border: none;
+        }
+        .form-section .btn:hover {
+            background: linear-gradient(to right, #0056b3, #004494);
+            transform: scale(1.05);
+        }
+        footer {
+            background: linear-gradient(to right, #4b0082, #2e0057);
+            color: white;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        .centered-image {
+            display: block;
+            margin: 20px auto;
+            width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="#about">About</a>
+            <a href="#test">Test</a>
+        </nav>
+    </header>
+    
+    <section class="hero" id="home">
+        <h1>Early Detection for a Healthier Mind</h1>
+        <p>Alzheimer's disease is a progressive neurological disorder that affects memory and cognitive functions. 
+           Early diagnosis can improve treatment outcomes and quality of life.
+           Use our AI-powered test to assess your Alzheimer's risk and take proactive steps for better brain health.</p>
+        <div class="image-container">
+            <img src="data:image/jpeg;base64,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" alt="symptoms image">
+            <img src="https://www.apexhospitals.com/_next/image?url=https%3A%2F%2Fbed.apexhospitals.com%2Fuploads%2Falzheimers_1_742d43a731.png&w=1920&q=75" alt="Pneumonia image">
+        </div>
+           <br>
+        <a href="#test" class="btn">Start Test</a>
+    </section>
+    
+    <section class="features" id="about">
+        <h2>About our Model</h2>
+        <p>Our AI-driven Alzheimer's detection model analyzes key cognitive and health parameters, providing an accurate risk assessment to help you take early preventive measures.</p>
+        <img class="centered-image" src="https://i.postimg.cc/gjW8whH3/alz-pic1.png" alt="Alzheimers output">
+        <br>
+        <img class="centered-image" src="https://i.postimg.cc/pVJnGpB1/alz-Picture2.png" alt="Alzheimer’s output">
+
+    </section>
+    
+    <section class="form-section" id="test">
+        <h2>Alzheimer's Disease Risk Test</h2>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="number" name="Age" placeholder="Age" required min="0" max="110">
+            <input type="text" name="memory_loss" placeholder="Memory Loss Frequency (Low/High)" required>
+            <input type="text" name="cognitive_ability" placeholder="Cognitive Ability (Normal/Declining)" required>
+    
+            <label for="scan-upload">Upload Scanned Brain MRI/Image:</label>  
+            <input type="file" id="scan-upload" name="file" accept="image/*" required>  
+                  
+            <button class="btn" type="submit">Check Alzheimer's Risk</button>
+        </form>
+    
+        {% if image_path %}
+            <h3>Uploaded Image:</h3>
+            <img src="{{ url_for('uploaded_file', filename=image_path) }}" alt="Uploaded Image">
+        {% endif %}
+        <br>
+        {% if prediction %}
+            <h2>{{ prediction }}</h2>
+        {% endif %}
+    </section>
+    
+    
+</body>
+</html>

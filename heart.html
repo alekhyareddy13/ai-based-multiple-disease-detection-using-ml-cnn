@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background: linear-gradient(to right, #42a4e4, #ff7dd4, #8a4bf8);
+        }
+        header {
+            background: rgba(75, 0, 130, 0.7);
+            color: white;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            backdrop-filter: blur(5px);
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+        nav a:hover {
+            color: #d3cce3;
+            transform: scale(1.1);
+        }
+        .hero {
+            padding: 40px;
+            color: white;
+            margin-top: 10px;
+        }
+        .hero h1 {
+            font-size: 2.0em;
+            color: white;
+        }
+        .hero p {
+            font-size: 1.0em;
+            margin: 10px auto;
+            color: white;
+        }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            gap: 70px;
+            margin-top: 20px;
+        }
+        .image-container img {
+            width: 300px;
+            height: 200px;
+            border-radius: 10px;
+        }
+        .btn {
+            background: linear-gradient(to right, #007bff, #8a4bf8);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            border-radius: 5px;
+            transition: background 0.3s ease, transform 0.2s ease;
+            border: none;
+        }
+        .btn:hover {
+            background: linear-gradient(to right, #0056b3, #004494);
+            transform: scale(1.05);
+        }
+        .features {
+            padding: 20px 20px;
+            background: linear-gradient(to right, #42a4e4, #ff7dd4, #8a4bf8);
+        }
+        .form-section {
+            padding: 30px 20px;
+            background: linear-gradient(to right, #42a4e4, #ff7dd4, #8a4bf8);
+        }
+        .form-section input {
+            display: block;
+            width: 50%;
+            margin: 10px auto;
+            padding: 10px;
+        }
+        .form-section .btn {
+            background: linear-gradient(to right, #007bff, #8a4bf8);
+            border: none;
+        }
+        .form-section .btn:hover {
+            background: linear-gradient(to right, #0056b3, #004494);
+            transform: scale(1.05);
+        }
+        .centered-image {
+            display: block;
+            margin: 20px auto;
+            width: 400px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{{ url_for('home') }}">Home</a>
+
+            <a href="#about">About</a>
+            <a href="#test">Test</a>
+            
+        </nav>
+    </header>
+    
+    <section class="hero" id="home">
+        <h1>Early action,a lifetime of Healthy Beats</h1>
+        <p>Heart disease is the leading cause of death worldwide.It is a general term that includes many types of heart problems. 
+          It's also called cardiovascular disease, which means heart and blood vessel disease.Heart disease is the leading cause of death, but there are ways to prevent and manage many types of heart disease.
+          There are many different types of heart disease of which some include: Angina , Heart Failure, Heart Attacks, Arrhythmia etc.
+          Early detection and proper management can help prevent complications and improve quality of life.</p>
+        <div class="image-container">
+            <img src="https://cdn-assets-eu.frontify.com/s3/frontify-enterprise-files-eu/eyJwYXRoIjoiaWhoLWhlYWx0aGNhcmUtYmVyaGFkXC9hY2NvdW50c1wvYzNcLzQwMDA2MjRcL3Byb2plY3RzXC8yMDlcL2Fzc2V0c1wvNTRcLzM2MjE5XC82NGFjMjdhZTM2NmY5MTg0OTBmY2E3ZmQ5Y2Q4NTI2ZS0xNjU2Mzg0MTAyLmpwZyJ9:ihh-healthcare-berhad:EtLAmk7xgvpbyE0Jf5sXSzzNoYDM8wSlpYb5IrIemyg?format=webp" alt="Heart Disease Image">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7j1Dzf4CB0g5qRr8kYlw-qL8WOA3YVtfb3A&s" alt="Heart Disease Image 2">
+            <img src="data:image/jpeg;base64,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" alt="heart symptoms image">
+        </div>
+        <br>
+        <a href="#test" class="btn">Start Test</a>
+    </section>
+    
+    <section class="features" id="about">
+        <h2>About our Model</h2>
+        <p>Our heart disease detection model uses AI to analyze key health parameters and provides an accurate risk assessment, helping you take necessary precautions and seek early treatment.
+            It uses prominent Machine Learning algprithms like Random Forest, XgBoost, KNN etc with an overall accuracy of 85%.
+        </p>
+        <img class="centered-image" src="https://i.postimg.cc/W4HwYgGh/heart-Picture4.png" alt="Heart Disease Research Image">
+    </section>
+    
+    <section class="form-section" id="test">
+        
+        <h2>Heart Disease Risk Test</h2>
+        <form method="post">
+            <input type="number" name="Age" placeholder="Age" required min="0" max="110">
+            <input type="text" name="sex" placeholder="Sex" required>
+            <input type="text" name="cp" placeholder="Chest Pain Type (cp)" required>
+            <input type="text" name="trestbps" placeholder="Resting Blood Pressure (trestbps)" required>
+            <input type="text" name="chol" placeholder="Cholesterol Level (chol)" required>
+            <input type="text" name="fbs" placeholder="Fasting Blood Sugar (fbs)" required>
+            <input type="text" name="restecg" placeholder="Resting ECG Results (restecg)" required>
+            <input type="text" name="thalach" placeholder="Max Heart Rate (thalach)" required>
+            <input type="text" name="exang" placeholder="Exercise Induced Angina (exang)" required>
+            <input type="text" name="oldpeak" placeholder="ST Depression (oldpeak)" >
+            <input type="text" name="slope" placeholder="Slope of Peak (slope)" >
+            <input type="text" name="ca" placeholder="Number of Major Vessels (ca)" >
+            <input type="text" name="thal" placeholder="Thalassemia (thal)" >
+            <button class="btn" type="submit">Check Heart Disease Risk</button>
+        </form>
+
+{% if result %}
+    <h3>Prediction: {{ result }}</h3>
+{% endif %}
+
+    </section>
+    
+</body>
+</html>

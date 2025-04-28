@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flu Symptom Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #42a4e4, #ff7dd4, #8a4bf8);
+            text-align: center;
+            padding: 20px;
+        }
+        header {
+            background: rgba(75, 0, 130, 0.7);
+            color: white;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            backdrop-filter: blur(5px);
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+        nav a:hover {
+            color: #d3cce3;
+            transform: scale(1.1);
+        }
+        .section {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            margin: 10px auto;
+            width: 500px;
+        }
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .form-group label {
+            flex: 1;
+        }
+        .form-group input, .form-group select {
+            flex: 2;
+            padding: 5px;
+        }
+        h2 {
+            color: #333;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        label {
+            display: block;
+            margin: 5px 0;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #d9534f;
+        }
+
+        /* MODIFIED: Added Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .modal-content {
+            background: linear-gradient(to bottom right, #ffffff, #f0f0f0);
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            position: relative;
+        }
+        .modal-header {
+            color: #ffffff;
+            padding: 10px;
+            border-radius: 10px 10px 0 0;
+            margin: -20px -20px 20px -20px;
+        }
+        .close {
+            color: #ffffff;
+            float: right;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .mild { background-color: #28a745; } /* Green for Mild */
+        .moderate { background-color: #ffc107; } /* Yellow for Moderate */
+        .severe { background-color: #dc3545; } /* Red for Severe */
+        .modal-body {
+            color: #333;
+            line-height: 1.6;
+        }
+    </style>
+    <script>
+        function calculateSeverity() {
+            let symptoms = document.querySelectorAll('input[name="symptom"]:checked');
+            let severityLevels = document.querySelectorAll('input[name="severity"]:checked');
+            let age = document.getElementById("age").value;
+            let gender = document.getElementById("gender").value;
+            let duration = document.getElementById("duration").value;
+            let severityMapping = {"Light": 1, "Moderate": 2, "Severe": 3};
+            
+            if (symptoms.length === 0 || severityLevels.length === 0 || age === "" || gender === "" || duration === "") {
+                alert("Please fill in all fields and select symptoms and severity level");
+                return;
+            }
+            
+            let severityScore = symptoms.length * severityMapping[severityLevels[0].value];
+            let diagnosis = "";
+            let recommendation = "";
+            // MODIFIED: Added headerClass for color coding
+            let headerClass = "";
+            
+            if (severityScore < 5) {
+                diagnosis = "Mild Flu";
+                recommendation = "Basic Measures:\n- Rest and stay hydrated\n- Take over-the-counter pain relievers\n- Use a humidifier\n- Monitor symptoms for 5-7 days";
+                // MODIFIED: Set header class for mild
+                headerClass = "mild";
+            } else if (severityScore < 10) {
+                diagnosis = "Moderate Flu";
+                recommendation = "Basic Measures:\n- Rest and stay hydrated\n- Take over-the-counter pain relievers\n- Use a humidifier\n- Monitor symptoms and consider consulting a doctor if worsening";
+                // MODIFIED: Set header class for moderate
+                headerClass = "moderate";
+            } else {
+                diagnosis = "Severe Flu";
+                recommendation = "Recommendations:\n- Visit a doctor immediately\n- Possible antibiotic course if bacterial infection is suspected\n- Antiviral medication may be prescribed\n- Complete bed rest and medical supervision";
+                // MODIFIED: Set header class for severe
+                headerClass = "severe";
+            }
+            
+            // MODIFIED: Replaced alert with modal display logic
+            let modal = document.getElementById("resultModal");
+            let modalHeader = document.querySelector(".modal-header");
+            let modalBody = document.querySelector(".modal-body");
+            
+            modalHeader.className = "modal-header " + headerClass;
+            modalHeader.innerHTML = `Flu Diagnosis: ${diagnosis}<span class="close">×</span>`;
+            modalBody.innerHTML = `Age: ${age}<br>Gender: ${gender}<br>Duration: ${duration} days<br><br>${recommendation.replace(/\n/g, "<br>")}`;
+            
+            modal.style.display = "block";
+            document.getElementById("result").innerText = `Flu Diagnosis: ${diagnosis}`;
+            
+            // MODIFIED: Added close functionality
+            document.querySelector(".close").onclick = function() {
+                modal.style.display = "none";
+            }
+            
+            // MODIFIED: Added click outside to close
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{{ url_for('home') }}">Home</a>    
+        </nav>
+    </header>
+    <h2>Common Flu Detection</h2>
+    
+    <div class="section">
+        <h3>Patient Information:</h3>
+        <div class="form-group">
+            <label>Age:</label>
+            <input type="number" id="age" min="0">
+        </div>
+        <div class="form-group">
+            <label>Gender:</label>
+            <select id="gender">
+                <option value="">Select</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Duration of Symptoms (days):</label>
+            <input type="number" id="duration" min="1">
+        </div>
+    </div> 
+    <div class="section">
+        <h3>Select Symptoms:</h3>
+        <label><input type="checkbox" name="symptom" value="Cough"> Cough</label>
+        <label><input type="checkbox" name="symptom" value="Nasal Congestion"> Nasal Congestion</label>
+        <label><input type="checkbox" name="symptom" value="Headache"> Headache</label>
+        <label><input type="checkbox" name="symptom" value="Body Pains"> Body Pains</label>
+        <label><input type="checkbox" name="symptom" value="Sore Throat"> Sore Throat</label>
+        <label><input type="checkbox" name="symptom" value="Dehydration"> Dehydration</label>
+        <label><input type="checkbox" name="symptom" value="Fever"> Fever</label>
+    </div>
+    
+    <div class="section">
+        <h3>Select Severity:</h3>
+        <label><input type="radio" name="severity" value="Light"> Light</label>
+        <label><input type="radio" name="severity" value="Moderate"> Moderate</label>
+        <label><input type="radio" name="severity" value="Severe"> Severe</label>
+    </div>
+    
+    <button type="button" onclick="calculateSeverity()">Diagnose</button>
+    
+    <h2 id="result"></h2>
+
+    <!-- MODIFIED: Added Modal HTML -->
+    <div id="resultModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- Diagnosis will be inserted here -->
+            </div>
+            <div class="modal-body">
+                <!-- Details will be inserted here -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>

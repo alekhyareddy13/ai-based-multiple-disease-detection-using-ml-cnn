@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malaria Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background: linear-gradient(to right, #42a4e4, #ff7dd4, #8a4bf8);
+        }
+        header {
+            background: rgba(75, 0, 130, 0.7);
+            color: white;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            backdrop-filter: blur(5px);
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+        nav a:hover {
+            color: #d3cce3;
+            transform: scale(1.1);
+        }
+        .hero {
+            padding: 40px;
+            color: white;
+            margin-top: 10px;
+        }
+        .hero h1 {
+            font-size: 2.0em;
+            color: white;
+        }
+        .hero p {
+            font-size: 1.0em;
+            max-width: 300 px;
+            margin: 10px auto;
+            color: white;
+        }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            gap: 70px;
+            margin-top: 20px;
+        }
+        .image-container img {
+            width: 300px;
+            height: 200px;
+            border-radius: 10px;
+        }
+        .btn {
+            background: linear-gradient(to right, #007bff, #8a4bf8);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            border-radius: 5px;
+            transition: background 0.3s ease, transform 0.2s ease;
+            border: none;
+        }
+        .btn:hover {
+            background: linear-gradient(to right, #0056b3, #004494);
+            transform: scale(1.05);
+        }
+        .features {
+            padding: 20px 20px;
+            background: linear-gradient(to right, #42a4e4, #ff7dd4, #8a4bf8);
+        }
+        .outpu-image{
+            display:flex;
+            gap:40px;
+            flex-wrap: wrap;
+        }
+        .outpu-image img{
+            max-width: 100%;
+            height:auto;
+        }
+        .form-section {
+            padding: 30px 20px;
+            background: linear-gradient(to right, #42a4e4, #ff7dd4, #8a4bf8);
+        }
+        .form-section input {
+            display: block;
+            width: 50%;
+            margin: 10px auto;
+            padding: 10px;
+        }
+        .form-section .btn {
+            background: linear-gradient(to right, #007bff, #8a4bf8);
+            border: none;
+        }
+        .form-section .btn:hover {
+            background: linear-gradient(to right, #0056b3, #004494);
+            transform: scale(1.05);
+        }
+        
+           
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="{{ url_for('home') }}">Home</a>
+
+            <a href="#about">About</a>
+            <a href="#test">Test</a>
+        </nav>
+    </header>
+    
+    <section class="hero" id="home">
+        <h1>Early Detection for Malaria</h1>
+        <p>Malaria is a life-threatening disease caused by parasites transmitted through mosquito bites.
+            Malaria can be a deadly disease if not diagnosed and treated quickly.
+            Several theories like Miasma theory, Water Contamination theory, etc., have been proposed by popular scientists stating the intense impact of this disease on human well-being.
+            It is transmitted through the bite of an infected female Anopheles mosquito, which injects Plasmodium parasites into the bloodstream, causing the disease.
+            Early detection and treatment can prevent severe complications.</p>
+        <div class="image-container">
+            <img src="https://www.mayoclinic.org/-/media/kcms/gbs/patient-consumer/images/2013/08/26/10/13/ds00475_im00175_mcdc7_malaria_transmitthu_jpg.jpg" alt="Malaria Transmission Image">
+            <img src="https://myhealth-redcliffelabs.redcliffelabs.com/media/blog-content/1147/10804181_49494_11zon-1-1024x1024.jpg" alt="Malaria Transmission Image 2">
+        </div>
+        <br>
+        <a href="#test" class="btn">Start Test</a>
+    </section>
+    
+    <section class="features" id="about">
+        <h2>About our Model</h2>
+        <p>Our malaria detection model uses AI to analyze key health parameters and provides an accurate risk assessment, helping you take necessary precautions and seek early treatment.</p>
+        <div class="output-image">
+            <a href='https://postimages.org/' target='_blank'>
+                <img src='https://i.postimg.cc/L5bx4Rt6/malaria-Picture1.png' border='0' alt='Picture1'/>
+                <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxQTEhURExIVFRMWFhsaFxgYGR4bGhsbGRocHxgYGBcZHSggGB0lGxgYITEhJSkrMC4uFx8zODMtNygtLisBCgoKDg0OGxAQGzEmICU1Ly0tLS0tMC0wNS0tLS0tMC8rNS01LS0tLS0tLS0tLS8rKy0tLi0tLS0tKystLS0tLf/AABEIALcBEwMBIgACEQEDEQH/xAAcAAABBQEBAQAAAAAAAAAAAAAAAwQFBgcCAQj/xABQEAACAQIEAwQFBwgIAwUJAAABAgMAEQQSITEFE0EGIlFhFDJScYEHI0JikZKhFTM0VHKys9NTc4KUscHR8HST1AgXJDVDFiVjtMLh4uTx/8QAGQEBAAMBAQAAAAAAAAAAAAAAAAECAwQF/8QAKxEAAgIBAwMCBgIDAAAAAAAAAAECEQMSITEEE0FR8CIyYZGh0XHBBYGx/9oADAMBAAIRAxEAPwCO+VXtpjMJj2hw8qJHlDWMMTm7M1zmeMn8aYdnON8cximSOaFY9QHkggCki1wtoSTvva2h1vpT/t/2XfHcZdQcsSRoZX6gFnsFHVjY29xNXfDQKirGgCooAUDQADyFZznWyOjDh17vgadn5cZGhOLxEc0h6LDCqqPIiMFj5n7KyfEfKbxEOwWdQuY2DYfD5gL6BrRb23rYmv0FZ98qvAA0aYqNCZFIRwoJ7huQSBtZuv1qrCW+5rmwpRuPgrX/AHn8T/WE/u+H/lU64V2+4tiJUginjMjmwHo+HA2uSSYtAACfhVErXfk54JyMKZZMokxC5lI1IhAFu8NsxN7eAHW4GsnRz4cfclRY+B4niEchOJxMU6ZBokEKhX+kCREMwHQg666VQe0fykY5MVNHDOBGkhUBsPhyRl0YX5W2YG3W1r1cMfxUovzTKbaBdifhVF4v2ZV2GIMnfmkZmjzLfvG5t4C567VaOOXLPRzdC9CUEeYT5Q+LStkjlDt4LhYCffYRbUi3ym8TGhxCA/8ADYf+VV37H8Gjw7syAKWSxFyb3IO5PS1vjUf2sw6YbA4kyRRmSfESctgub84+dc5IUo4XNa1x3Ou1Uk9MqOXJ0jxr4mVj/vP4n+sJ/d8P/Kq1diuOcVxrF3xIjgW129Fgu5ue7GTFY7G51tpprWc9mOE+lYqKC9lZu+b2IQavbzyg287V9BYfDqiqiKFVRZQBYADoBVZyrZGeDFr3fAy4mmMMarh8YFlDatJBhyGU73CwCxHS3x8Rn3aTtRxrBMFmmjs3quuHgKNbcA8ka+R11rU7VAdtuD+lYSSMZs6gvGAbXZQbAjY31GvjVIza5NsmCLVxGfyM9rcXjcVKmJkV1SNWW0USEEyot7xop2JFr9a3CvnT/s8/pk/9Sv8AGjr6Lrc4RDF4pUViXRSqFiXIAAA9ZvBR1NZ5geO49sNznngVZ4gxaVTH6OzLqqBbZ06gswOl7m9gdocLhn4jK8nJxCiBZXLBWbDmI2VFI2VhzHym1iG1IawZ4Xi8McnOxmEmnxGVJFHzPKw6yC8aIssq/OZSMz2uSSAbWFYNznPRDauXybJQjDVLz/oV4BjOSzjh2JwkwaKNWjaQmzpm+eBRmOoYXFtcg1FWXshxeUviYMTiFkMGQh2VY3Kut2YgWUxg90MANVYG5F6ieK9o8LiFyTcKxLAbG2HDKR1RxOGRhvdSCKgMVJHJhpHlhTENDh1xGHadAzmCZSyGRRoXXI6sAdTGDcZtIksmGm3a4+vv9kxljy2ls/ubEK9qM7NRImFhjjn56xxqgluGzZQBckf799SddBgFFFFAFFNsZxCKKwkkRC3qgkXa3RV3Y+QpseORezP8MPOR9ojoB7isQsal2NlG58PedgPM6Dc03bikQ+mNASdR3bEA5tdDc2tvoRvUbwztPBiZZ8MqzCSA98NG6C1lZSHIABIYd0kNvpbWmZxcS930fS50ZstgWzZcoFsoOwrLJmhj+dl4Y5T+UsK8Ri25iDfdgPVJDaE30IpxHIGF1IIOxGo+2oPBcufMOUykqRmDEjU3Op65u9tUzh4gihBcgCwubn7atCcZrVHgiUXF0xWiiirlQooooAooooDL8XgrcQxU5tqsca6m/dzs9xtY5k+w/FfLe/8AhXWPxqtjMRBYBkyOT7QfMAd7kgoRtsVoU1zz+Y9LB8io8sdq9ZARYi4IsfPxppw+F0aUNbKXLKb+PTL0tTwmokqZtJUfPXa3hogxcsSI6xhiUDKR3fLNqVBBAbqBeta7J3fh0AzF7xFblctirMMlvq2y362vTztpxdcJhmnKq0h7kVwD3mBsdRsNWt1tTHsvisNHho0TFLK8klzmazGSQAlQn0Pd436mr6m0jnwxWPLyQy8xH5rRCyixJPT3VzguFc0c7miw2st7HfKwOh99WrHw5nUWuDuB/nUdDwuZZHZbBSCFW9luetq6nNTW+zPa1qS9CI41KqZBG8hyKSd9Tvc28+lZ9juO4rEIsEkryLm0Q6knYX0ux6C996uHaE42KJphMFEZF8oFzdgAQbdL1R8HxFo8QuIyqWV8+Uju3vfbprUZKVRXg8r/ACWT4lD27Lv2E7E4yPEw4qRBHGpzHMRmIZSLZRsdetiL1qwqn9mPlChxJCOOTKSAFJuGJIAytYaknY/jVw31Fcc273KYVFR+Fnprkb17rVP+UfjckEIhgD86e4DKD3VHrWIHrEXGmoFz4VCV7F5SUVbOfkg5f5Xx/KJMdu6T/wARHe3iL3sfC1bxXzp/2ef0yf8AqU/jR1ofbt2BVp+JJE8WIVkjw6XeJCGs5UK8sjmNX9hNWuGAsepI8vljfGcFMPO4WJI3WbCyNGVTI65iUIlIYhtXBDWW9m8KheM8Imx0oxkWGmdWjiAyCE5XjULLG2eVWVldWUgeFXfF8GjxEk+LwmPEZdUMuRY5F5iJ3DJcFlBjKXQZTYAgi5vWsFxxEWPFR4tMHNiI1lkRu/A2YWVpFOXIxtYMGRjlsc2XTnUuzkbrZ+m+/wBfbN67kEk90e/k/FZy/wCTsRqxb1cPfVAvrc699N9yLDYUlBiXggeTKM2D4dBh2B258as0iMwNiql41JBsDn10NSvFe0E4+bxPEMPCGXNbDxFZWTqwZ5JCq6G7KumuoteveDcNbEPNh4MQMNFhlQIsapJn5q5uZJnBut8wABBJDMWNxTNm760Q3vfylSaKYcCwXJ7fks3Zjs8cPFMOeC+IfmF4kVFUmNEBjRs42QG5vcmpANiU3Ec6+IvG4HQZTmV288yDypXg3Dkw0EWHjvkiRUW+psotcnxO9Pa6KrZGTdkaOLgD5yDERnw5Zk/GDOPxriXFyy9yFGjB3mkXLlHXJE3eZ/DMAovfvWymVooBpgeHRxXKjvN67sczsfFnOp8hsBoLDSnZorxjYXOgFARWKxqhngSNiQrGRlACIWUkZySLs29lBOoJte9V1cQ4Fg7AeTGn/ClEcszSYrmI50GUgnuIuaRrasAgGlhqT1sq7cAvqkgKnUXHT3jevP62Hckuy7rmmdXTS0J9xV/I24RiG5hazyEIbKCMx20BdgPtIqw4DGLKgdb2uQQwsyspsysOhBBFRsGCjguZJbMykC2lgdyNzfzpPszGVaTNiBKWZmUBcuhNyxBGrHS9tBbTc1t0iUMembWq+L3M87cp3FbFgopvgsakoLIbgG17Ea2B6+8U4rqMQooooAooooD5w+VDjsuD4yZoj/6ShlPqsMzaMP8AdqvvBuIJiYI54zdXUH3H6SnwIOlqzT5aIGfixREZ2KLZVBLHVtAADr8KcPhZcBhhjME8sSXUTQYlct2CgZgGA6k7Wv02tWc1Z04JuN+hp2WvZFIUt4AnU2Gg6noKxIfKTj8hTmJc37+QZhrfQ7eW1QGK49iZDIWxEp5v5wBiA2gHeUWB7oA22FUWNmj6peEOu1naOTGzcx9EW4jQG6qL+PUnS5sL2G2gqw/JGsXpDlmPPyfNrbQqfXN/aGnwJqh1M8GTDNG6yyNDPmBil1MdtAyMFBYGxJBA6dK1a2o5oTevUzeRlcXBuPEHQ291ecg+/f8AGsXxYx/CzkEpWN9VZDmie9tVzCwO3QH4WpaP5R8aFy5oybWzFO97/C/wrPQ/B3Lq0tmjQ+3Fo8HK/MCSKosFYZrkiwsehvr5VhzG+p1NdSyliWYkk9Tqa4rWKpHHmzPK7Z6DWxfJXx+XEpLHM2ZosmVj6zBs3reNso189axyiolHUiuPI4Oz6eEoIBBBBFwRqCDsQetVTjvb/C4cqobnNchhGQcltySTa99LX8fjnnZpOJTRJBC0q4VyULAAqqsRn1PhYmwI3IHrVbMH8l2HETJJK7Sk6SKMoUeGQkg+d/wrLSlydXcnJfCi0fJxx/C4zGtJBGUk5PzhKhSRz4sgOU2Y7m/mKi2BbEyviw8LmZ+e0ESyNG/LTKkf5y6Npc666EL0Z/Ipwx8NxPF4eS2ZIlFxsRzoiGF+hBB+Naxx7sNhcSzS2eGdiCZYiA57pUizBl1B10ucq+ArZJUYQy6ZNv8ABUPktEq4tgIlCth4ziO6q5GBYxBQH+kTJcZSLj1ulW/E4jBYVpoGw7Qia5kdMO/LkLLYkyxoVva98xGpPjUlwPs7hsIG9HiCF7ZjqScosNTsNzYWF2Y2uTXOG4lJYZ4SSctsoOx8QdrEMN/Z2vpKM8k9UmyrcFxOCwiytDipsVM8aRrmjaYgRhuWmXDwg5bub6XN96lPk9xoeGWNcCuDEUpQqlsjNYFiBlUg2IuCNL23BtLxcYLAMIZCCqkWF/Wva3nYX/2L8QYtYwVjwzKty3dXKpZ7uxFwNSx1JA1JvaxpslSKt2S4r2oh+NZQSYn2J1BH08oXUaG3e16a6C9pehAUUUUA3lmbNkRQSACbsRa5IFrKb+qaieNTDOguocK2bvLmBsCoGaxI1Y3XW4FSbvllYtezIoBsSLqXuNBp6w3/AMjS0ZVhmUhg3Uag20/yt8Khq1RK2ZS+cfL7q/6Vb+HG8UZPsj/CkjweG98n4m32XtT1VAFhoBXH0vTzxNuTOjNmjNJJEB2kkIdR0y7EAjfwNNuCz2kJY2UIxNhbQDfuirHisGkgs63tt0P2ik4eGxKCAnrAg6k3B3FzUPppvP3L2CzR7emtxpwnmBDYZiX1zuNO6ugKZrjfexp7nl9iP/mH+XS0cYXRQB7hau67jmG2eX+jj/5h/l0Z5f6OP/mH+XTmigI2XjUaErJdXG4sT9hA1BGvx2G1FV/tB+kP/Z/dFFARHFsPEMXLKApmNgWsMyqM1lB6A3J87+VZt8p+AxU8kSxBnhEbMVXYOp7zN4nKVAGuzWG97zxQf+8sWbG+SHvX0NjLoBbcXN9T6w0HUZLmsW6keljxqeJLgx7gnYPFYhQ5AiQtbv3Dadclr2+ynfFvk8xCThIFMkRy/OEqLX9bML9NToDpatMx3ExCVWxe40VR3r9TepCKQMoYAi42O/xqzckr8Evo4qP9mU9v+xseGjTEQE8ssEdW3zEEhh5Gx06VRa3nttgxLgMQpt3UMim17GPvaeFwCt/BjWDVMHaOPqIKMtjU+xk68RwDYCeYgxsuULlzmNQMvrKdAbC4sdAL2OudcbwKwTPEkqzKpsHXQHTXS52Nxv0rRfk07LtEBjZCLunza9QrW75942Hgb1LYvsHhZHzCPKSSScxsSTf1b2trtUJpSNexLJBPyYtRWyYn5PMMYZIUFpCpaN9dHA0DNr3b7i23mL1k/FuGS4aQwzIUcdDsR0KnYg+Iq9pvYwyYZY+RnT/GcMKTLCDnzhCrKCQ2cC2UfS1JGnUGlezGESXFQxSKWR3ykA2Oul726b/Ct7wOFWKNYkFkRQqjfQeZqspUWxYdaGeFijwcCwxLfKLADq3Vj7zrTzCZgi5/W6/E0qUHhQxrNtVR6KpKkh52dwY9NE4XUwct26G08RQHXfV+nvOgrQ6zXs5ir8REOt1wuc+Bz4iID4jlt96tKrSHynmZq1ugoooq5keKoAsBYDYVHYfFOkghmIOe/KkAtmtqUYbBwuumjAMQBYipKoztFpA0t7GEiW/W0RDMPioZT5MaAkXQEWIBHnXVFFAFFFI4uQqjMNSAT47eVxc+V6AWpthfWl/rB/DSjh8zOmZ1ykk2Go06XB1B6fDptRhfWl/bH8NKAc0UUUAUUUUAUUUUAUUUUBTe0H6Q/wDZ/dFFHaD9If8As/uiigKB2s7RDD8YeCS/LmVLEfRe7AG3gdAfcPOpmJwb2YHKbGxvYjcG2x1GlZr8uX/mjf1a/wCLVWODdo8TAhhgkCAtmubeG137oB/yFZyhe6OrD1GhaWbZP3XD8ssQNxuB1o4dimfNeNlF9CevlbpVewvb7DmVIWO6rmluBGGK3IuTtfS9S3/tRgwqyHEplYkA66lbZht0zL9tU8VR3rNBrkecalkTDytFHzJMtlXzYhbm/QXzHyBqhdjOwMiSxYnEcox5SeWe+SSCFva6W1zA3Ow0vsl2/wC3DlnwmHLRhHKyODZmKmxVSNQLg++3hXnyZ9q4YEfDYiRlUnNGxuUXTvLpqtzrta9+u8pNROSc4SyK/BqhW9e8oVEcK7RYXEaQzqxtfKbq1r2vlax//o8afy4tFtnkRc1rZmAvfQWudbmqHSpJq0xRhaqb8oPDoxycYY0zCZVlYrcFGGX5zpYWAufEVauJ41IIHxDsuRELesBmsNFUnQknQeZrJ+1/b5sVGcPFHy4mIzFiC7AWIHgouOlybDXcG0E29jHPOKjT5NWiwsakFEQaaFQBpboQPCnBrLey/wAovKiWHExs4QWV0tmsLZVZTa/XvX8NNzWhcI45h8SqmKZCT9AkBwbXIy73A8PCocWuS0MsZLYkAaacW4imHheeT1UF7XALHoov1NMu0HaXD4RWLurSAaRAjMT0BH0dxqelY92n7Sy42TM/djB7kY9VR/8AU3i3+A0qYxsrlzKKpcml/ItxRsTxTF4hxYvEmngBNEFF+tgAL+Vb9Xzj/wBnk/8AjJ/6lf48dfR1bnnt3uFeFq9qscScZ2BP0x7PtDx1qUmyCzZh4iortPwlcZhZcMZDGZFIV1JujfRYWIJF9xcXBI2NQrBddR6y9U+r5VzNbv8A7H1PreVWUUyySZasDh1ijSJScqKFBY3Y2G7MdWY7knUkk0vmHiKqN1zHUbDrH4t5VzEV7mo9X6n1fKp0E6S4A0hxCPNG66aq2+2x3sRp8RUJwG2dLex9XwHs61PYmIspUMVJtqLXFjfrp9tUkqZVqhtwX8yotYi9xe9tSbak9CNLmlcL60v7Y/hpXeEw4jXKCSL9QBv5KAB9lc4Yd6XzcW+4lQQOKKKKA8vUJxHtXh4ZWhYSl0tmyQyOBmFxqqkbUjP2ik5kiRYVpFjfIWMiJdgoJsDrYZgL++qR2oxBaedz82S0NxzXSx5Oq54gS1j8Da/hR7ILd0XvBdrcPKzIvNDLG0hDxOl1UqGIzKL2LL9tJJ23whbLncC9s7ROIwfOUrk363sdhes/wx7jHmxAvhZokzzXzu0kRCAzWZgQhB0sLgVHYwpn9HZ+cylxygEuT3VRMir3mUo/TQMDYb1Md0mZZcnbdc+0bnevRVU4fxTExRRRHC81kijVnEqKGYIM1lOwzXHwqd4JxIYiFZlUrmLAq1rhkYqwuNDZlOo3o0aKVlb7QfpD/wBn90UUdoP0h/7P7ooqCS04JQV2HrP++1L8seA+ymeFxKqtibHM/Q+2aW9MT2vwNALcseA+yjIPAUj6YntfgaPTE9r8DQCWOZlK5EDAk5tPGwBv0sSCfINa5sKYw46WylsOb5LsMpF27m2nd3fT8ak/TE9r8DR6YntfgaAZ4fFuSAcOQT77DuBhclB1JX31ycTJZByyScuY5CMozKHW2t7XOt9jpmsa5x2MfNeJtLLYHLlPeOcG/euU0HS9vOkxxObXuIdvh3RfXNr3s32igFBi5RlvDmukVxYgKzZuZqFO1l06Xrj8rG4U4YgnNob3yqoN7ZddSRb6ptfQU4wWPYk8zKosLAa63bNrfUWydBv8A79MT2vwNAc4NywJaPIQbW3vtqNBp8OlOAg8BSPpie1+Bo9MT2vwNALFB4CjljwH2Uj6YntfgaPTE9r8DQHmLUALYD10/eFOaZYjEK2UKbnOvQ9GF6e0AVWeIv327wHfGma30h0ymrNVZ4ie+2h9cdX9oeAtV4clo8jYyHXvj1l+kPq/VrqSX1+8PV9ofW+rXLH1tG9desn1fKiU+vo3qeMn1vKruKZZqxTMcxs4Og+kPFvq0nFIe53h6vtD6v1a7DHMdG2HWTxbyoia+XQju+L/AFfKotrki2uR3wNrumoPd8b9PCwqaxcTsAEk5fiQoY2+rm0B94NQ3BAc6aH1epY9PrC1WCqSab2KtkX+S5f17E/dw/8AIr0pik2aKZdNGBjfzOdcysfAZVHnUnSGHclpATs4A92RT/iTVSBDBcUSRuWQ0ctrmOQWewtcixKuouAWQsLm170+pvjcEkq5ZFuL3BuQynoyMtmRhc94EEVE9m4sckk64sxPGWBgZGJYKBYiTuIMxsG7otdm20oCCXiaQS4jmBgjYuQcy11UhI7ByNVvrY2tpa4uLx+M9FlebEJjZVsmeQR5CMsYAzWaJjtbrS2MjkaSdYllLHFy6pM0KACOK5kdASTsALHc7a024thcamEkCEhs13viDMTEEbOFaZFyG+XQeetaaU+THVJboqvGMdHIwyGRhHETnlKhmzNG1gFAAy5Su3hve9XzhXafDzZ2sY2SMO+YbKTa2Yb20v76p3ZaXAhJPSwuYMGjzBj3MgACW3a+bTf1fDT3sIJziLwkiOy8/Nl1Tv8ALB0vmvfVfO9bzxRSkl4ObHlm5qTd6vvsXgdo4CVWNzK7MAEjBJ13JvYBQLkkkaCpXsL+hr/XYj/5mWqtBgsSjI0izMmdc3LxsshGu5jdFDre1xfa+hqc7O8MjxPDTh5cxjeXEBgrsht6TL9JCDby2OxuK52klsdUW3Lf3wIdoD/4h/7P7ooq1JgIwACgbzYZifeTRVDUc0UUUAUUUUAUUUUAUUUUAUUUUAUUUUAUUUUAUUUUAU3kwSEkldT5n/C9OKKAiMThrSqBGTGRckXJza267aDXpp0JKotE3e+YLanqdQGICb9V1vfc+FTGKiLIyhirEaEX0PQ6bi/TrtUecNiM1w62s1rs25sdRl1FwbeF7bVNsWJLA1rmLXlqfpd5+9nUm5Kgd0j9o79BEOZQcMQNBcOdL2zfZ+OUn2Qe0w2JAA5i6KALkm501Y5LnY/eNPMGkoZuYyldMttxvmv3R5f/AG2pbFisWGVdQLfbS1FFQApthfWl/bH8NKc02wvrS/tj+GlAOaKKKAzLiRmixOJHMxcQaYsojw/MRgUSzB+S99rWvpbakhi2YMksmMmjdSrI+EYAhhbeOBWHwNadzBfLcZrXtfW3jbwppxnFSxx3hgaeQ3AVWRbaGzMZGUWuANLnXar6rM9NGNT8MhbLyHnC6rITDO5azWJBCWVhZl0A+0VL8NEMXMOG9KRmIUuIJZCmUglBniYDzBudfdVi4UuKggjiOAmPLQBmMuH1Nru5vN1a5+NO+z0uIjxM2bBukUzoSTLCckgTK5YLKSbqsWgBO9aSm2qb/JlHGk7S3/hlc9Nm/Wsf/c//ANWrp2EgdMFGsgYOWlY5xlazzOyllsMpIYG1ha+wqcLgXuRoLnXYeJ8tD9ldCsnLajZRp2e0UUVUuFFNzjYxcmRLBsp7w0b2TrofKh8bGM15EGS2e7Du32za6X86AcUUg2MjGYGRAVGZu8NB4nwHnR6ZHe3MS+XPbMPV9r9nzoBeikExkZygSIS4JWzDvAblfEe6vEx0ZykSIQ5IWzDvEbhddfhQDiim/p0dgeYli2Qd4et7O/reVDY6MAkyIApyt3hofA66HyoBxRSD42MZryIMls92Hdvtm8L+dDYyMXBkQFVzHvDRfaPgPOgF6KQGMjNhzEuVzDvDVfaHiPOlIZVYBlYMp2INwfcRQHdFFFAFFM+MY7kYebEFcwiieTLe18ilrX6XtSPZ7ivpMCz5MhLSKVvmsY5GQ96wuCUJ261bS9OrwRqV0SVFNZOIRLKsBkUSupZUJ7xC2uQPj+B8DTDF9oUTFxYMoxaVcwcWyrcMVB1vqI5NRtlHjUKLYbSJmioPhfazDYid8NE7GVM9wUYD5tgr2YixsTU5RprkkKKKKgBRRRQBTbC+tL+2P4aU5pthfWl/bH8NKAc0UUUAxxXDVd+YSb9y3lkLHSx6q7KfInxNNxwg5jeaTLlUDvG9xfMSNte6Tbc3Om1S1FARUvBc2a80lipW19LG99Op13PUDppXeJ4QHcyZ2Vib6dDkKZh4NZj3vcKkqj8NiGWd4Xa+YcyI6AlLgOmm5RiuthpKg1IJICT8GuSebJrbr0ANl8ctydD7talEFgB4CvaKAKKKKAi4lN1QZoxaQ20J0dbasDocxPxFI4XE5kEhkkAMYksAhNjfpywenxroRZiirmU2kN3zZvXW47rroSQdegFcY1OVbPLqQxA+ducilmA+e8AaABjk0tPIbkAWEZ1JIA9XxB+zzF14ZbiN1kZkdiO8FGmVjfRQd1pFIWLmPOcy2LfnNA3qn8/1sdvCljhmR0LNmuxA9fQ5GN+9Iw2BG3WgFYo2dn+cZQrAAAL7CnqpO5NRuF4qjKGMsik20+bO4W2uQWvmA1t0OxUl4uGZ3kKtlswB1fU5F17sijqBt0pLl2zAzZcrZdeZa+UNp89tlP4GgPcJihI+RJnIylr9zoxW1snle9LTFlLLnY6x2JC3GZwDsttvKk8Ph89ykwNrbc3qLj/1vAg/GuJYCA6EgktF3rv1cW3kLab6Ef6geDHJcgzSAgkaiMXGlmBK6qcy2O2/QEjz8oR3tz5NGynSPQgi/wBHz/A0nHKpvebLZipzc0C6mx151vHr0PhSjWF7zWtvfmjTu66zaDvDegO1xGYApK51Q6hLFWcC+i7HvC/1T4U/wq99zlIJC96+9r6AdLf51FiIXJEgYiSPOPndy6gXvKRcW2IO2opTieHneOZcLLyJyFyyOnMQaH1VuBfxJuBpoaAmqKheH4XGrEivPBnCKGvC7d4DXvc4ZtethfwG1OORi/6fD/3d/wDqKAS7XqDgMWGbKpw01za9hy2uctxe3heqt2d7RpBg+St3xVsbLFGATmKT4gqmnVsj2G5Eb+FTPayLEDA4svLCyeiz3CwspPzTWsxmYDW3Q1VOBcmN8JNyJ5cUz4xYghAjuuIxAUyZmHqrNNqL6SMSDZa6sSTxO/X+mc877qr0f/UdxhcU2ExMuKMeLngmihyxsqyMnPjhxAYC8QKzu+4zFkynTWQ4dhEwXoCS4XnYu7qnLJcwRPJ1J1KRiQLmNgBnsRexZS4pjyjiooZp8Q+QvHJYYZVmgjT0fJmyvmnEh74YkC7aKFOHcSlj5Ui4tMRNLKBPKEHeVZIFjjF1GVck7MMoAvITqSSZlLbn6e68blkkn9ff6JrgmHdeJzguhADkqsVrByjIDIIgLgG575JvtpVyqCUxHHtkeEzCEh1HLMoN1IzALzMtiv0gNtOtIcKwfElMvOxWGa8l4yIGICZRZQomXKQc2hzHUd47LzzbdGkVRZKKiuRjP1jDf3Z/+po5GM/WMN/dn/6mqFh23EIwSLm4Nj3W6fCvPylH4n7rf6VB45HLaHUO2a2gPrdL+1l0vTVmxHRUvlNvC9x0z+Gb/e9NTOhYk0mWb8pR+J+63+lR/Dpiks7vOzpI4MacsjIAgBBIW7EsDvsFXrcmMHOJ1AAsdvcRY6+OUg6b62tqmi4gE+q3dUDMdLgtcm2xZbE72NgLgXqNTJ7KLP8AlKPxP3W/0pxFIGAYbH/fWqnAJswzernJ88pD2B7x2JXQeA1OtrPw/wDNr7v86snZnkgojiiovtLxQ4bDvMqh2BVVUnKC0jqi3O9szC9gSegJsKoD8Ux05MgldrDJE0OWCN2QtmZIpJmM5JsCWKoQoy6Escs3UwxfN7/orDG5cGp1F8Ub57C2OvOYG3smCUkHwGZUPvC1Qm+UmeEhZhhHzBmDu74TKVbK0RjcSkuGBNw3wGhZPgHaaL0yTiE7uBIuS8UqT4WNQFGpEaypcqGLAW071gKvDJGa1RZbsZKujVaK4ikDAMpBUi4INwQdiD1Fd1oZBRRRQEa+Fk1IJzLcKcwuwcgsGzIctrC2+1cy4JyTc5tBYnl6kagH5rQAk6677VKUUBFpgnBFjbu7jl6H2R81t5/hXaYeQshYk2uTdl7psQLWjBbQnqKkaKAjUw8t7glMzXcBlIFgACM0dzoBppSTcPc94gFi+v5va1s9+T61gBbwG9S9Rs/6ZF/UTfvwUBwmDkTNk0N9LGMZh4kiLTc6a711LhJDn1JN0KsWUE5SDawjsuvkb+VSdFARJ4c3loLj8361ybfmtNSTm8zpXC8KOgyrbLc6R6MLWW3J1Gg18hpUzRQETFw5rqdsxBksU+gQVFxEC408RanuEjYXZtCbd0G4FuoNhvTmigCiiigIbtp/5fjP+Fm/htVL4XxySCDCrHJGsZxUyzA5Se/xFEUEE3X5uSZrj2B8dF4hg1mikhcXSRGRgDY5WBBsRtoap+J7J4ZZWUrMwCKxIkYscxYNpe5sFvYAmx8bA7wnHRpl6p8WYZIz1qUUuGt3Xp9GUjsxi40GFvyzZobhjoLpwgFjYjUEMfehvcAiluC4lBHBd1Fnhv3h7HDvP6p+w+FW09msJmty8RYFlPzhvdQDffUG5APiK5Ts7gzry8TaxI+cNzZsvjp4jx8uqsXq/Hj0r6/Qq+83wvu/0WeAo2K5iTowMeXIJnOt9xFn5Y0G4W++tS9Vrs5wDDxyGaJZVZCU773vcC5tc6a/hVlrOdXszaGqviX23/QUUUVQuINhIybmNCTv3RR6FH/Rp90f6UvRQERx9OVhpZIcOkkyoeUmQHM50QEC2mYi+o06iveBumIw8U5w4iMiBsjBGIuL+stwwtqD4EXANwJaorhrcqV8Mdjmlh80ZvnFH7EjbDQLJGKAfehR/wBGn3R/pSqIALAAAbAV1RQFT+UTD/NRYk5cuHlVmDC+knzZZW+gy58wY6aalRqKPyUEfJmaOKT0aLDHmRsWTkk2mwRA7xa4YZdQyR31XLWwyoGBVgCCCCCLgg7gjqKpGK7PcPGIGFimfDO6hXgw+VUewZrSHltkkZA+oZXZVJ1y3HHm6ecp9zG6fHvn1fg1hNJaZEX2bwpn4iJCojyyNi8rL84EaH0ZE0PzecIZDm12FiVbLbe03ZePEqZEVY8UB83MBY3GoSS35yMnQqfG4sQCJPhfCIMMrJh4I4VZszCNQoJsBewHgBXPHOLR4WFp5Douyj1nY+rGg6sx0A862wYVihpIc256lyVH5LeIkiTDZSsYRJolJ1TOWEsI8Ajrcf1hA0AFX6s7+S7CPzJZXt3I1jYj1TKxMkwW/Rc0ev1iOhrRK1jwW6hJZHXt+fyFFFFSYhTbiWMEMMkzAlY0ZyFtchFJIFyBew6kUzXi507i67d//wDGoztREcXhZcMRyzIhCyK5BRraNoASPEXFwSNjVdSNO1P0Jb8pS/qU/wB6D+dR+Upf1Kf70H86m+BxXKjSJUuqKFBaQsxt1Zit2Y7knUkmneG4gWYKUAv1DX6X8B4VOpB4pLejj8pS/qU/3oP51NJMRMZ0l9DmyrFIhGaG93aMi3z21kP2ip2ipMyN/KUv6lP96D+dR+Upf1Kf70H86pKmMuPIYjKNDa+a3+VQ3RDdCf5Sl/Up/vQfzqdYDFCWNZArLe/da1wQSCDlJG46E00mxuZWVkBVlIIzbgjX6PhUX2WwXoUAgDPKczM0kjlnYsSRckdFsPhUakRqRZ6KYLxA3AyDUget4kDw86f1Kdkp2FFFFSSFFFFAFFFFAFFFFAFFFFAFFFFAFNOJYLmqLNkkQ5o3AuVaxF7dQQSCOoJGm9O6KAjMNxUBhFOBFMTZbnuSH/4TnRtj3NGFtRaxMnXE8KupR1DKRYqwBBHgQdDUf+Qoh6vNQDZY5pUQe6NXCD7KAj+2QD+jQMAYpZzzVIuHjjhlkylR693WPu63AOhqqpwWSWOPD+j4eOOVziFjbCRtHhkXZCtskkr5oww0YXns2i20LHcMimQRTRrKgIIEgDars3e+l571B4vsxhldcmChZSNRywBcsijvZSdmZv7PSpBV+LYuSPDyYCKOXkrinido43kyQmOOYQqIwSitzxGOiqrKLd2o/s72cfEzFFE0MMKLaSVZSVDlgYsLHOAkNgo1AIAKjKemgYKQwx5IcHykszBE7oDX6AR2u18xJ/GnkPEmMoiaLLcnW59ULe/qjrp9uvQ1atm0M7hDTFK/XyOOF8Pjw8SwxLljQaDc6m5JJ1ZiSSWOpJJNO6KKkxCiiigKhIkbhcxNwpGl+ttfAkFQRSIwUWnffRbe/W9z3dT59OlFFYnfSD0OL22FtBbTTXTRfrGpXg+UNGim4UW+AUjwA8NqKKlclZqossFFFFanEFQWPsWZSSO8Dp4ixB2tuBRRVJvYpPgj/wAnxWK3JBFrHX/Lw092lcnh0drZ3999fvWv8Pf4m/tFZamUHmDRVyqpJ76nX9oeVWKiitIOy8AooorQuFFFFAFFFFAFFFFAFFFFAFFFFAFFFFAFFFFAFFFFAFFFFAFFFFAFFFFAf//Z" alt="malaria output">
+            </a>
+            </div>
+    </section>
+    
+    <section class="form-section" id="test">
+        <h2>Malaria Risk Test</h2>
+        <form action="/malaria" method="post" enctype="multipart/form-data">
+            
+            <input type="text" name="fever" placeholder="Fever (Yes/No)" required>
+            <input type="text" name="chills" placeholder="Chills and Sweating (Yes/No)" required>
+            <input type="text" name="nausea" placeholder="Nausea and Vomiting (Yes/No)" required>
+            
+            <label for="file">Upload Scanned Image:</label>  
+            <input type="file" id="file" name="file" accept="image/*" required> 
+            {% if image_path %}
+            <h3>Uploaded Image:</h3>
+            <img src="{{ url_for('uploaded_file', filename=image_path) }}" alt="Uploaded Image">
+        {% endif %}
+
+            <br>
+
+    
+            <button class="btn" type="submit">Check Malaria Risk</button>
+        </form>
+    
+        {% if prediction %}
+            <h2>{{ prediction }}</h2>
+        {% endif %}
+    </section>
+   
+</body>
+</html>

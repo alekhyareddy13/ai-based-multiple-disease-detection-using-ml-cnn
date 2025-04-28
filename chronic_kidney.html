@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Chronic Kidney Disease Detection</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                text-align: center;
+                background: linear-gradient(to right, #42a4e4, #ff7dd4, #8a4bf8);
+            }
+            header {
+                background: rgba(75, 0, 130, 0.7);
+                color: white;
+                padding: 10px 0;
+                position: fixed;
+                width: 100%;
+                top: 0;
+                left: 0;
+                backdrop-filter: blur(5px);
+            }
+            nav a {
+                color: white;
+                margin: 0 15px;
+                text-decoration: none;
+                font-weight: bold;
+                transition: color 0.3s ease, transform 0.2s ease;
+            }
+            nav a:hover {
+                color: #d3cce3;
+                transform: scale(1.1);
+            }
+            .hero {
+                padding: 40px;
+                color: white;
+                margin-top: 10px;
+            }
+            .hero h1 {
+                font-size: 2.0em;
+                color: white;
+            }
+            .hero p {
+                font-size: 1.0em;
+                max-width: 300 px;
+                margin: 10px auto;
+                color: white;
+            }
+            .image-container {
+                display: flex;
+                justify-content: center;
+                gap: 70px;
+                margin-top: 20px;
+            }
+            .image-container img {
+                width: 300px;
+                height: 200px;
+                border-radius: 10px;
+            }
+            .btn {
+                background: linear-gradient(to right, #007bff, #8a4bf8);
+                color: white;
+                padding: 10px 20px;
+                text-decoration: none;
+                display: inline-block;
+                margin-top: 20px;
+                border-radius: 5px;
+                transition: background 0.3s ease, transform 0.2s ease;
+                border: none;
+            }
+            .btn:hover {
+                background: linear-gradient(to right, #0056b3, #004494);
+                transform: scale(1.05);
+            }
+            .features {
+                padding: 20px 20px;
+                background: linear-gradient(to right, #42a4e4, #ff7dd4, #8a4bf8);
+            }
+            
+            .form-section {
+    padding: 30px 20px;
+    background: linear-gradient(to right, #42a4e4, #ff7dd4, #8a4bf8);
+}
+
+.form-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 600px; /* Adjust this to control the form width */
+    margin: 0 auto; /* Center the form container */
+}
+
+.form-group {
+    display: flex;
+    align-items: center; /* Vertically center the label and input */
+    width: 100%;
+    margin-bottom: 15px; /* More space between rows */
+}
+
+.form-group label {
+    flex: 0 0 200px; /* Fixed width for labels to ensure alignment */
+    text-align: right; /* Align text to the right for a clean look */
+    margin-right: 15px; /* Space between label and input */
+    font-weight: bold; /* Optional: make labels stand out */
+}
+
+.form-group input,
+.form-group select {
+    flex: 1; /* Inputs take up remaining space */
+    max-width: 300px; /* Limit input width for consistency */
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+            .form-section .btn {
+                background: linear-gradient(to right, #007bff, #8a4bf8);
+                border: none;
+            }
+            .form-section .btn:hover {
+                background: linear-gradient(to right, #0056b3, #004494);
+                transform: scale(1.05);
+            }
+            .centered-image {
+                display: block;
+                margin: 20px auto;
+                width: 300px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <a href="{{ url_for('home') }}">Home</a>
+    
+                <a href="#about">About</a>
+                <a href="#test">Test</a>
+                
+            </nav>
+        </header>
+        
+        <section class="hero" id="home">
+            <h1>Early Detection for Kidney Disease</h1>
+            <p>Chronic Kidney Disease (CKD) is a progressive condition where the kidneys lose their function over time.
+                Early detection is crucial as CKD can lead to kidney failure, requiring dialysis or a kidney transplant.
+                Symptoms may include fatigue, swelling, changes in urine output, and high blood pressure.
+                Detecting kidney disease early through medical tests can help manage symptoms and slow progression.</p>
+            <div class="image-container">
+                <img src="https://longmoreclinic.org/wp-content/uploads/2023/08/47454-1.jpg" alt="Kidney Disease Image 1">
+                <img src="https://www.beckydorner.com/wp-content/uploads/2021/07/Kidney-Failure.jpg" alt="Kidney Disease Image 2">
+            </div>
+            <br>
+            <a href="#test" class="btn">Start Test</a>
+        </section>
+        
+        <section class="features" id="about">
+            <h2>About our Model</h2>
+            <p>Our kidney disease detection model exhibits AI to analyze patient symptoms and laboratory parameters,providing an early risk assessment.
+                This model uses Logistic Regression, Gradient Boosting, Decision Tree Classifier etc.,to attain a best accuracy score
+                 Early intervention can prevent further complications and improve quality of life.</p>
+                 <img class="centered-image" src="https://i.postimg.cc/DzS7K3XB/kidney-Picture6.png" alt="Kidney Accuracy Image">
+        </section>
+    
+        <div class="container">
+            <section class="form-section" id="test">
+                <h2>Kidney Disease Risk Test</h2>
+                <div class="form-container">
+                    <form method="POST" class="p-4 bg-white shadow rounded">
+                        <!-- Numerical Inputs -->
+                        <div class="form-group">
+                            <label>Age:</label>
+                            <input type="number" placeholder="Age" required min="0" max="110">
+                        </div>
+                        <div class="form-group">
+                            <label>Blood Pressure:</label>
+                            <input type="number" name="bp" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Specific Gravity:</label>
+                            <input type="number" step="0.01" name="sg" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Albumin:</label>
+                            <input type="number" name="al" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Sugar:</label>
+                            <input type="number" name="su" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Blood Glucose Random:</label>
+                            <input type="number" name="bgr" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Blood Urea:</label>
+                            <input type="number" name="bu" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Serum Creatinine:</label>
+                            <input type="number" name="sc" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Sodium:</label>
+                            <input type="number" name="sod" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Potassium:</label>
+                            <input type="number" name="pot" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Hemoglobin:</label>
+                            <input type="number" step="0.1" name="hemo" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Packed Cell Volume:</label>
+                            <input type="number" name="pcv" required>
+                        </div>
+                        <div class="form-group">
+                            <label>White Blood Cell Count:</label>
+                            <input type="number" name="wc" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Red Blood Cell Count:</label>
+                            <input type="number" step="0.01" name="rc" required>
+                        </div>
+        
+                        <!-- Categorical Inputs -->
+                        <div class="form-group">
+                            <label>Red Blood Cells:</label>
+                            <select name="rbc" required>
+                                <option value="normal">Normal</option>
+                                <option value="abnormal">Abnormal</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Pus Cell:</label>
+                            <select name="pc" required>
+                                <option value="normal">Normal</option>
+                                <option value="abnormal">Abnormal</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Pus Cell Clumps:</label>
+                            <select name="pcc" required>
+                                <option value="notpresent">Not Present</option>
+                                <option value="present">Present</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Bacteria:</label>
+                            <select name="ba" required>
+                                <option value="notpresent">Not Present</option>
+                                <option value="present">Present</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Hypertension:</label>
+                            <select name="htn" required>
+                                <option value="no">No</option>
+                                <option value="yes">Yes</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Diabetes Mellitus:</label>
+                            <select name="dm" required>
+                                <option value="no">No</option>
+                                <option value="yes">Yes</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Coronary Artery Disease:</label>
+                            <select name="cad" required>
+                                <option value="no">No</option>
+                                <option value="yes">Yes</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Appetite:</label>
+                            <select name="appet" required>
+                                <option value="good">Good</option>
+                                <option value="poor">Poor</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Pedal Edema:</label>
+                            <select name="pe" required>
+                                <option value="no">No</option>
+                                <option value="yes">Yes</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Anemia:</label>
+                            <select name="ane" required>
+                                <option value="no">No</option>
+                                <option value="yes">Yes</option>
+                            </select>
+                        </div>
+        
+                        <div class="text-center mt-4">
+                            <button class="btn" type="submit">Check Kidney Disease Risk</button>
+                        </div>
+                    </form>
+                </div>
+                {% if prediction %}
+                <h3>Prediction: {{ prediction }}</h3>
+            {% endif %}
+            </section>
+        </div>
+
+
+</body>
+</html>
+
+
