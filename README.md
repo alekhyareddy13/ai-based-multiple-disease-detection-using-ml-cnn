@@ -8,6 +8,7 @@ image feature extraction while using multiple machine learning (ML) techniques
 (such as Random Forest, Support Vector Machine (SVM), Logistic Regression, 
 and XGBoost) to process sequential data for improved accuracy and model 
 efficiency. 
+
 The system receives training through multiple datasets that incorporate medical 
 images and patient health records and time-series information. The system's 
 diverse input data allows it to detect multiple diseases including Breast Cancer, 
